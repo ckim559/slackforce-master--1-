@@ -1,0 +1,34 @@
+{
+  "name": "Slackforce",
+  "description": "Simple message broker to enable Slack to Salesforce communication using Slash Commands",
+  "env": {
+    "CLIENT_ID": {
+        "description": "Client Id of your Salesforce Connected App",
+        "value":""
+    },
+    "CLIENT_SECRET": {
+        "description": "Secret of your Salesforce Connected App",
+        "value":""
+    },
+    "USER_NAME": {
+        "description": "Salesforce username for your integration user",
+        "value":""
+    },
+    "PASSWORD": {
+        "description": "Salesforce password for your integration user",
+        "value":""
+    },
+    "OPPORTUNITY_TOKEN": {
+        "description": "Slack token for the pipeline slash command",
+        "value":""
+    },
+    "CONTACT_TOKEN": {
+        "description": "Slack token for the contact slash command",
+        "value":""
+    },
+    "CASE_TOKEN": {
+        "description": "Slack token for the case slash command",
+        "value":""
+    }
+  }
+}
