@@ -22,10 +22,12 @@ function execute(req, res) {
             contacts.forEach(function(contact) {
                 var fields = [];
                 fields.push({title: "Name", value: contact.get("Name"), short:true});
+                fields.push({title: "Account:", value: contact.get("Account_Name_API__c"), short:true});
                 fields.push({title: "Link", value: "https://na4.salesforce.com/" + contact.getId(), short:true});
                 fields.push({title: "Phone", value: contact.get("Phone"), short:true});
                 fields.push({title: "Mobile", value: contact.get("MobilePhone"), short:true});
                 fields.push({title: "Email", value: contact.get("Email"), short:true});
+                
                 attachments.push({color: "#009cdb", fields: fields});
             });
             res.json({text: "Contacts matching '" + req.body.text + "':", attachments: attachments});
