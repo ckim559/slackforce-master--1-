@@ -10,7 +10,7 @@ function execute(req, res) {
         return;
     }
 
-     var q = "SELECT Id, Name FROM Account WHERE Name LIKE '%" + req.body.text + "%' LIMIT 10";
+     var q = "SELECT Id, Name, Phone, Account_Owner__c  , Type, BillingStreet, BillingCity, BillingState FROM Account WHERE Name LIKE '%" + req.body.text + "%' LIMIT 10";
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
@@ -22,7 +22,10 @@ function execute(req, res) {
             var attachments = [];
             accounts.forEach(function(account) {
                 var fields = [];
-                fields.push({title: "Name", value: account.get("Name"), short:true});
+                fields.push({title: "Name:", value: account.get("Name"), short:true});
+                fields.push({title: "Owner:", value: account.get("Account_Owner__c"), short:true});
+                fields.push({title: "Account Type:", value: account.get("Account_Owner__c"), short:true});
+                fields.push({title: "Link", value: "https://na4.salesforce.com/" + account.getId(), short:true});
                 attachments.push({color: "#009cdb", fields: fields});
             });
             res.json({text: "Accounts matching '" + req.body.text + "':", attachments: attachments});
