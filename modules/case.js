@@ -24,7 +24,7 @@ function execute(req, res) {
                 var fields = [];
                 fields.push({title: "Name:", value: account.get("Name"), short:true});
                 fields.push({title: "Owner:", value: account.get("Account_Owner__c"), short:true});
-                fields.push({title: "Account Type:", value: account.get("Account_Owner__c"), short:true});
+                fields.push({title: "Account Type:", value: account.get("Type"), short:true});
                 fields.push({title: "Link", value: "https://na4.salesforce.com/" + account.getId(), short:true});
                 attachments.push({color: "#009cdb", fields: fields});
             });
