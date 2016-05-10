@@ -9,7 +9,7 @@ function execute(req, res) {
         return;
     }
 
-    var q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where Name LIKE '%" + req.body.text + " + limit;
+    var q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where Name LIKE '%" + req.body.text + "%' LIMIT 10";
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
