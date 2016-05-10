@@ -9,7 +9,10 @@ function execute(req, res) {
         return;
     }
 
-    var q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where Name LIKE '%" + req.body.text + "%' LIMIT 10";
+    var limit = req.body.text;
+    if (!limit || limit=="") limit = 5;
+
+    var q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where isClosed=false ORDER BY amount DESC LIMIT " + limit;
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
@@ -22,7 +25,7 @@ function execute(req, res) {
             opportunities.forEach(function(opportunity) {
                 var fields = [];
                 fields.push({title: "Opportunity", value: opportunity.get("Name"), short:true});
-                fields.push({title: "Link", value: "https://na4.salesforce.com/" + opportunity.getId(), short:true});
+                fields.push({title: "Link", value: "https://login.salesforce.com/" + opportunity.getId(), short:true});
                 fields.push({title: "Stage", value: opportunity.get("StageName"), short:true});
                 fields.push({title: "Close Date", value: opportunity.get("CloseDate"), short:true});
                 fields.push({title: "Amount", value: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(opportunity.get("Amount")), short:true});
