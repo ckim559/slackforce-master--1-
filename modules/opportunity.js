@@ -9,16 +9,14 @@ function execute(req, res) {
         return;
     }
 
-    var limit = req.body.text;
-    if (!limit || limit=="") limit = 5;
-
-    var q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where isClosed=false ORDER BY amount DESC LIMIT " + limit;
+    var q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where Name LIKE '%" + req.body.text + "%' LIMIT 10";
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
             res.send("An error as occurred");
             return;
         }
+        
         if (resp.records && resp.records.length>0) {
             var opportunities = resp.records;
             var attachments = [];
@@ -32,11 +30,7 @@ function execute(req, res) {
                 fields.push({title: "Probability", value: opportunity.get("Probability") + "%", short:true});
                 attachments.push({color: "#009cdb", fields: fields});
             });
-            res.json({
-                response_type: "in_channel",
-                text: "Top " + limit + " opportunities in the pipeline:",
-                attachments: attachments
-            });
+            res.json({text: "Opportunities Matching '" + req.body.text + "':" , attachments: attachments});
         } else {
             res.send("No records");
         }
