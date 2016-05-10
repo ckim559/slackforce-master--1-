@@ -10,33 +10,24 @@ function execute(req, res) {
         return;
     }
 
-    var params = req.body.text.split(":");
-    var subject = params[0];
-    var description = params[1];
-
-    var c = nforce.createSObject('Case');
-    c.set('subject', subject);
-    c.set('description', description);
-    c.set('origin', 'Slack');
-    c.set('status', 'New');
-
-    org.insert({ sobject: c}, function(err, resp) {
+     var q = "SELECT Id, Name FROM Account WHERE Name LIKE '%" + req.body.text + "%' LIMIT 10";
+    org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
-            res.send("An error occurred while creating a case");
+            res.send("An error as occurred");
+            return;
+        }
+        if (resp.records && resp.records.length>0) {
+            var accounts = resp.records;
+            var attachments = [];
+            accounts.forEach(function(account) {
+                var fields = [];
+                fields.push({title: "Name", value: account.get("Name"), short:true});
+                attachments.push({color: "#009cdb", fields: fields});
+            });
+            res.json({text: "Accounts matching '" + req.body.text + "':", attachments: attachments});
         } else {
-            var fields = [];
-            fields.push({title: "Subject", value: subject, short:false});
-            fields.push({title: "Description", value: description, short:false});
-            fields.push({title: "Link", value: 'https://test.salesforce.com/' + resp.id, short:false});
-            var message = {
-                response_type: "in_channel",
-                text: "A new case has been created:",
-                attachments: [
-                    {color: "#009cdb", fields: fields}
-                ]
-            };
-            res.json(message);
+            res.send("No records");
         }
     });
 }
