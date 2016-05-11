@@ -26,10 +26,10 @@ function execute(req, res) {
                 fields.push({title: "Link", value: "https://login.salesforce.com/" + opportunity.getId(), short:true});
                 fields.push({title: "Stage", value: opportunity.get("StageName"), short:true});
                 fields.push({title: "Account", value: opportunity.get("Opp_Account_Name_API__c"), short:true});
-		    	fields.push({title: "Opportunity Owner", value: opportunity.get("Opportunity_Owner__c"), short:true});
+		fields.push({title: "Opportunity Owner", value: opportunity.get("Opportunity_Owner__c"), short:true});
                 fields.push({title: "Close Date", value: opportunity.get("CloseDate"), short:true});
                 fields.push({title: "Record Type", value: opportunity.get("Opportunity_Record_Type__c"), short:true});
-			    fields.push({title: "Opportunity Type", value: opportunity.get("Opp_Type__c"), short:true});
+		fields.push({title: "Opportunity Type", value: opportunity.get("Opp_Type__c"), short:true});
                 attachments.push({color: "#009cdb", fields: fields});
             });
             res.json({text: "Opportunities Matching '" + req.body.text + "':" , attachments: attachments});
