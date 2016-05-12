@@ -10,7 +10,7 @@ function execute(req, res) {
         return;
     }
 
-     var q = "SELECT Id, Name, Phone, Account_Owner__c  , Type, BillingStreet, BillingCity, BillingState FROM Account WHERE Name LIKE '%" + req.body.text + "%' LIMIT 10";
+     var q = "SELECT Id, Name, Phone, Account_Owner__c, Type, BillingStreet, BillingCity, BillingState FROM Account WHERE Name LIKE '%" + req.body.text + "%' LIMIT 10";
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
