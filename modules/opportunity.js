@@ -30,7 +30,7 @@ function execute(req, res) {
                 fields.push({title: "Close Date", value: opportunity.get("CloseDate"), short:true});
                 fields.push({title: "Record Type", value: opportunity.get("Opportunity_Record_Type__c"), short:true});
 		fields.push({title: "Opportunity Type", value: opportunity.get("Opp_Type__c"), short:true});
-                attachments.push({color: "#009cdb", fields: fields});
+                attachments.push({color: "#db002f", fields: fields});
             });
             res.json({text: "Opportunities Matching '" + req.body.text + "':" , attachments: attachments});
         } else {
