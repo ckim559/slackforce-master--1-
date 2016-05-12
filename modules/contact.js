@@ -28,7 +28,7 @@ function execute(req, res) {
                 fields.push({title: "Mobile", value: contact.get("MobilePhone"), short:true});
                 fields.push({title: "Email", value: contact.get("Email"), short:true});
                 
-                attachments.push({color: "#009cdb", fields: fields});
+                attachments.push({color: "#dbad00", fields: fields});
             });
             res.json({text: "Contacts matching '" + req.body.text + "':", attachments: attachments});
         } else {
