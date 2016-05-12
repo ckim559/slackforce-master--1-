@@ -9,7 +9,7 @@ function execute(req, res) {
         return;
     }
 
-    var q = "SELECT Id, Name, Opportunity_Record_Type__c, Opp_Account_Name_API__c, Opp_Type__c, Opportunity_Owner__c, Amount, Probability, StageName, CloseDate FROM Opportunity where Name LIKE '%" + req.body.text + "%' LIMIT 10";
+    var q = "SELECT Id, Name, Opportunity_Record_Type__c, Opp_Account_Name_API__c, Opp_Type__c, Opportunity_Owner__c, Amount, Probability, StageName, CloseDate FROM Opportunity where Name LIKE '%" + req.body.text + "%' AND (NOT Opportunity_Record_Type__c LIKE 'Services Project Request%') LIMIT 10";
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
