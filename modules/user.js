@@ -9,7 +9,7 @@ function execute(req, res) {
         return;
     }
 
-    var q = "SELECT Full_Name_Text__c, 	Title, Email FROM User WHERE 	Full_Name_Text__c LIKE '%" + req.body.text + "%' LIMIT 10";
+    var q = "SELECT Full_Name_Text__c, Title, Email FROM User WHERE Full_Name_Text__c LIKE '%" + req.body.text + "%' LIMIT 10";
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
