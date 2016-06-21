@@ -26,7 +26,7 @@ function execute(req, res) {
                 fields.push({title: "Email", value: user.get("Email"), short:true});
                 fields.push({title: "Mobile", value: user.get("MobilePhone"), short:true});
                 
-                attachments.push({color: "#008000", fields: fields});
+                attachments.push({color: "#32CD32", fields: fields});
             });
             res.json({text: "Users matching '" + req.body.text + "':", attachments: attachments});
         } else {
