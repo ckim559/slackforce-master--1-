@@ -9,7 +9,7 @@ function execute(req, res) {
         return;
     }
 
-    var q = "SELECT Full_Name_Text__c, 	Title, Profile, Email FROM User WHERE 	Full_Name_Text__c LIKE '%" + req.body.text + "%' LIMIT 10";
+    var q = "SELECT Full_Name_Text__c, 	Title, Email FROM User WHERE 	Full_Name_Text__c LIKE '%" + req.body.text + "%' LIMIT 10";
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
@@ -24,7 +24,7 @@ function execute(req, res) {
                 fields.push({title: "Name", value: user.get("Full_Name_Text__c"), short:true});
                 fields.push({title: "Title", value: user.get("Title"), short:true});
                 fields.push({title: "Email", value: user.get("Email"), short:true});
-                fields.push({title: "Profile", value: user.get("Profile"), short:true});
+          
                 
                 attachments.push({color: "#32CD32", fields: fields});
             });
