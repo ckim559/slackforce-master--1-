@@ -22,8 +22,8 @@ function execute(req, res) {
             users.forEach(function(user) {
                 var fields = [];
                 fields.push({title: "Name", value: user.get("Full_Name_Text__c"), short:true});
-                fields.push({title: "Title", value: user.get("Title"), short:true});
                 fields.push({title: "Email", value: user.get("Email"), short:true});
+                fields.push({title: "Title", value: user.get("Title"), short:true});
                 fields.push({title: "Phone", value: user.get("MobilePhone"), short:true});
                 
                 attachments.push({color: "#32CD32", fields: fields});
