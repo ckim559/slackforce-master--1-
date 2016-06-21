@@ -34,5 +34,9 @@
         "description": "Slack token for the case slash command",
         "value":""
     }
+    "USER_TOKEN": {
+        "description": "Slack token for the User slash command",
+        "value":""
+    }
   }
 }
