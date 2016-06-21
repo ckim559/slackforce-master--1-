@@ -1,1 +1,1 @@
-worker: node server.js
+node_modules
