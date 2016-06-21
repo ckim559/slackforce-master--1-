@@ -10,7 +10,7 @@ function execute(req, res) {
         return;
     }
 
-     var q = "SELECT Id, Name, Phone, Account_Owner__c, Type, BillingStreet, BillingCity, BillingState, AM_Text__c, SE_Text__c, PGM_Text__c FROM Account WHERE Name LIKE '%" + req.body.text + "%' LIMIT 10";
+     var q = "SELECT Id, Name, Phone, Account_Owner__c, Region__c, Type, BillingStreet, BillingCity, BillingState, AM_Text__c, SE_Text__c, PGM_Text__c FROM Account WHERE Name LIKE '%" + req.body.text + "%' LIMIT 10";
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
@@ -28,6 +28,7 @@ function execute(req, res) {
                 fields.push({title: "Solutions Engineer:", value: account.get("SE_Text__c"), short:true});
                 fields.push({title: "PGM:", value: account.get("PGM_Text__c"), short:true});
                 fields.push({title: "Account Type:", value: account.get("Type"), short:true});
+                fields.push({title: "Region:",  value: account.get("Region__c"), short:true});
                 fields.push({title: "Link", value: "https://login.salesforce.com/" + account.getId(), short:true});
                 attachments.push({color: "#009cdb", fields: fields});
             });
