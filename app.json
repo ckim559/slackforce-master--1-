@@ -35,7 +35,7 @@
         "value":""
     }
     "USER_TOKEN": {
-        "description": "Slack token for the User slash command",
+        "description": "Slack token for the user slash command",
         "value":""
     }
   }
