@@ -23,7 +23,7 @@ function execute(req, res) {
                 var fields = [];
                 fields.push({title: "Name", value: user.get("Full_Name_Text__c"), short:true});
                 fields.push({title: "Department", value: user.get("Department"), short:true});
-                fields.push({title: "Email", value: user.get("Email"), short:true});
+                fields.push({title: "Title", value: user.get("Title"), short:true});
                 fields.push({title: "Office Location", value: user.get("Office_Locations__c"), short:true});
                 fields.push({title: "Email", value: user.get("Email"), short:true});
                 fields.push({title: "Phone", value: user.get("MobilePhone"), short:true});
