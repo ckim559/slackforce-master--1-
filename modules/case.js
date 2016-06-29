@@ -14,7 +14,7 @@ function execute(req, res) {
     org.query({query: q}, function(err, resp) {
         if (err) {
             console.error(err);
-            res.send("An error as occurred (Account)");
+            res.send("An error as occurred (Account)" + error.code);
             return;
         }
         if (resp.records && resp.records.length>0) {
